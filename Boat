@@ -1,0 +1,71 @@
+public abstract class Boat {
+    //attributes
+    private String stateRegistrationNo;
+    private double length;
+    private String manufacturer;
+    private int year;
+    
+    private Customer customer;
+    private Slip slip;
+    //constructor
+    public Boat(String aStateRegistrationNo, double aLength, String aManufacturer, int aYear, Customer aCustomer)
+    {
+        setStateRegistrationNo(aStateRegistrationNo);
+        setLength(aLength);
+        setManufacturer(aManufacturer);
+        setYear(aYear);
+        //no customer at first
+        assignBoatToCustomer(aCustomer);
+        setSlip(null);//boat not in slip yet
+    }
+    public void assignBoatToCustomer(Customer aCustomer)
+    {
+        setCustomer(aCustomer);// point boat to customer
+        customer.setBoat(this);//point customer to boat
+    }
+    //custom method to assign a boat to a slip
+    public void assignBoatToSlip(Slip aSlip)
+    {
+        setSlip(aSlip);
+        slip.setBoat(this);
+    }
+    //tell about self
+  public String tellAboutSelf()
+  {
+    String boatDetails =  " state reg number "
+            + getStateRegistationNo() + " length "
+            +getLength() + " Manufacturer "
+            +getManufacturer() + " year "
+            +getYear();
+    String customerDetails = "\n and Owner is " + customer.getName() +
+            " living in " + customer.getAddress() + " with phone " +
+            customer.getPhoneNo();
+    return boatDetails + customerDetails;
+}
+    //set accessor methods
+    public void setStateRegistrationNo(String aStateRegistrationNo)
+    {stateRegistrationNo = aStateRegistrationNo;}
+    public void setLength(double aLength)
+    {length = aLength;}
+    public void setManufacturer(String aManufacturer)
+    {manufacturer = aManufacturer;}
+    public void setYear(int aYear)
+    {year = aYear;}
+    public void setCustomer(Customer aCustomer)
+    {customer=aCustomer;}
+    public void setSlip(Slip aSlip)
+    {slip = aSlip;}
+    //get accessor methods
+    public String getStateRegistationNo()
+    {return stateRegistrationNo;}
+    public double getLength()
+    {return length;}
+    public String getManufacturer()
+    {return manufacturer;}
+    public int getYear()
+    {return year;}
+    public Customer getCustomer()
+    {return customer;}
+    public Slip getSlip()
+    {return slip;}
+}
