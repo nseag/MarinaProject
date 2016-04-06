@@ -1,0 +1,42 @@
+public final class Sailboat extends Boat {
+
+    private double keelDepth;
+    private int noSails;
+    private String motorType;
+    
+    Sailboat(String aStateRegistrationNo, double aLength, String aManufacturer, int aYear, Customer customer,
+            double aKeelDepth, int aNoSails, String aMotorType) {
+        super(aStateRegistrationNo, aLength, aManufacturer, aYear, customer);
+        setKeelDepth(aKeelDepth);
+        setNoSails(aNoSails);
+        setMotorType(aMotorType);
+    }
+
+    
+    public void setKeelDepth(double aKeelDepth)
+    {keelDepth = aKeelDepth;}
+    public void setNoSails(int aNoSails)
+    {noSails = aNoSails;}
+    public void setMotorType(String aMotorType)
+    {motorType = aMotorType;}
+    public double getKeelDepth()
+    {return keelDepth;}
+    public int getNoSails()
+    {return noSails;}
+    public String getMotorType()
+    {return motorType;}
+    
+    public String tellAboutSelf()
+    {
+        String allDetails;
+        allDetails = "This is a sailboat "
+                +getStateRegistationNo() + " "
+                +getLength() + " "
+                +getManufacturer() + " "
+                +getYear() + " "
+                +keelDepth + " "
+                +noSails + " "
+                +motorType;
+        return allDetails;
+    }
+}
