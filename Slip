@@ -1,0 +1,110 @@
+import java.util.*;
+
+public class Slip {
+    //attributes
+    private int no;
+    private int width;
+    private double slipLength;
+    private Boat boat;
+    private Dock dock;
+    private Lease lease;
+    private Slip slip;
+    //static atribute variable
+    private static int numberOfSlips = 0;
+    //static constants for default attribute values
+    private static final int DEFAULT_WIDTH = 12;
+    private static final int DEFAULT_LENGTH = 25;
+    //static constants for data validation
+    private static final int MAXIMUM_NUMBER_OF_SLIPS = 50;
+    private static final int VALID_SLIP_WIDTHS[] = {10,12,14,16};
+    //constructor with 3 parameters
+    public Slip(int aNo, int aWidth, double aSlipLength, Dock aDock)  
+    {//invoke setters to populate attributes
+        setNo(aNo);
+        setWidth(aWidth);
+        setSlipLength(aSlipLength);
+        //assign slip to an existing dock
+        setDock(aDock);
+        //tell dock to associate with this slip
+        dock.addSlipToDock(this);
+        setBoat(null);
+        setLease(null);
+    }
+    //constructor with 1 parameter 
+    public void leaseAnnualSlip(Customer aCustomer, Date aStartDate, boolean isPayMonthly)
+    {
+        lease = new AnnualLease(aStartDate, width, isPayMonthly);
+        lease.setSlip(this);
+        lease.setCustomer(aCustomer);
+        aCustomer.setLease(lease);
+    }
+    //custom method to lease a slip
+    public double leaseSlip()
+    {
+        double fee;
+        switch(width)
+        {
+            case 10: fee = 800;
+            break;
+            case 12: fee = 900;
+            break;
+            case 14: fee = 1100;
+            break;
+            case 16: fee = 1500;
+            break;
+            default: fee = 0;
+            
+         }
+    return fee;
+    }
+    //override leaseSlip
+    public double leaseSlip(double aDiscountPercent)
+    {
+        double fee = this.leaseSlip();
+        double discountedFee = fee*(100-aDiscountPercent)/100;
+        return discountedFee;
+    }
+    //setter methods
+    
+    public void setNo(int aNo)
+    {no = aNo;}    
+    public void setWidth(int aWidth) 
+    {width = aWidth;}
+    public void setSlipLength(double aSlipLength)
+    { slipLength = aSlipLength;}
+    public void setBoat(Boat aBoat)
+    {boat=aBoat;}
+    public void setDock(Dock aDock)
+    {dock = aDock;}
+    public void setLease(Lease aLease)
+    {lease = aLease;}
+    public int getSlipId()
+    {return no;}
+    public int getWidth()
+    {return width;}
+    public double getSlipLength()
+    {return slipLength;}
+    public Boat getBoat()
+    {return boat;}
+    public Dock getDock()
+    {return dock;}
+    public Lease getLease()
+    {return lease;}
+    
+    
+    public String tellAboutSelf()
+    {
+        String info;
+        info = "Slip: Id = "
+                + getSlipId() + ", Width = "
+                + getWidth() + ", Length = "
+                + getSlipLength();
+        return info;
+    
+    }
+    public static int getNumberOfSlips()
+    {return numberOfSlips;}
+    
+    
+   
+    }
