@@ -1,0 +1,55 @@
+public class Customer {
+     
+     //attributive Definitions
+     private String name;
+     private String address;
+     private String phoneNo;
+     private Boat boat;
+     private Lease lease;
+     
+     public String getName()
+     {return name;}
+     public String getAddress()
+     {return address;}
+     public String getPhoneNo()
+     {return phoneNo;}
+     public Boat getBoat()
+     {return boat;}
+     public Lease getLease()
+     {return lease;}
+     //set accessors
+     public void setName(String newName)
+     {name=newName;}
+     public void setAddress(String newAddress)
+     {address=newAddress;}
+     public void setPhoneNo(String newPhoneNo)
+     {phoneNo=newPhoneNo;}
+     public void setBoat(Boat aBoat)
+     {boat=aBoat;}
+     public void setLease(Lease aLease)
+     {lease=aLease;}
+     
+     public Customer() {}
+    
+  
+     //get accessors
+     
+     
+     public Customer(String aName, String anAddress, String aPhoneNo) 
+{
+    setName(aName);
+    setAddress(anAddress);
+    setPhoneNo(aPhoneNo);
+    //originally no boat
+    setBoat(null);
+    
+}
+      public String tellAboutSelf()
+    {
+        String info;
+        info = "Customer name = " + getName() + ", Address = " + getAddress() + ", Phone Number = " + getPhoneNo();
+        return info;
+    }
+    
+     
+ }
